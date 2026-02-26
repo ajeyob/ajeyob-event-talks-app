@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTalks 2026 | 1-Day Event</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --transition-color: #334155;
+            --lunch-color: #0ea5e9;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        header {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(to bottom, #1e293b, var(--bg-color));
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        #categorySearch {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            border: 1px solid var(--transition-color);
+            background: var(--card-bg);
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #categorySearch:focus {
+            border-color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .schedule-item {
+            position: relative;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .schedule-item.hidden {
+            display: none;
+        }
+
+        .schedule-item.transition {
+            border-left-color: var(--transition-color);
+            opacity: 0.7;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .schedule-item.lunch {
+            border-left-color: var(--lunch-color);
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        .time {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .speakers {
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .categories {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TechTalks 2026</h1>
+        <p>A single-track day of technical excellence</p>
+        <div class="search-container">
+            <input type="text" id="categorySearch" placeholder="Filter by category (e.g. Cloud, AI, Frontend)...">
+        </div>
+    </header>
+
+    <main class="container" id="schedule">
+        <!-- Content will be injected by JavaScript -->
+    </main>
+
+    <footer>
+        &copy; 2026 TechTalks Event. Built with &hearts; for the developer community.
+    </footer>
+
+    <script>
+        const talks = [
+            { 
+                time: "10:00 AM - 11:00 AM", 
+                type: "talk", 
+                title: "Architecting for Resiliency: Beyond Circuit Breakers", 
+                speakers: ["Alice Chen"], 
+                categories: ["Cloud", "DevOps"], 
+                description: "Learn how to build systems that survive cascading failures using modern patterns like bulkheading and adaptive shedding." 
+            },
+            { 
+                time: "11:00 AM - 11:10 AM", 
+                type: "transition", 
+                title: "Short Break / Transition" 
+            },
+            { 
+                time: "11:10 AM - 12:10 PM", 
+                type: "talk", 
+                title: "Deep Dive into WASM: Portability at Runtime", 
+                speakers: ["Bob Smith"], 
+                categories: ["WASM", "Performance"], 
+                description: "Exploring how WebAssembly is moving beyond the browser into server-side runtimes and edge computing." 
+            },
+            { 
+                time: "12:10 PM - 12:20 PM", 
+                type: "transition", 
+                title: "Short Break / Transition" 
+            },
+            { 
+                time: "12:20 PM - 1:20 PM", 
+                type: "talk", 
+                title: "The Human Element: Leading Technical Teams", 
+                speakers: ["Charlie Day"], 
+                categories: ["Leadership", "Management"], 
+                description: "Practical advice for senior engineers transitioning into team lead roles, focusing on empathy and technical mentorship." 
+            },
+            { 
+                time: "1:20 PM - 2:20 PM", 
+                type: "lunch", 
+                title: "Lunch Break", 
+                description: "Catered networking lunch in the Main Hall." 
+            },
+            { 
+                time: "2:20 PM - 3:20 PM", 
+                type: "talk", 
+                title: "Next-Gen CSS: Container Queries and Beyond", 
+                speakers: ["Diana Prince"], 
+                categories: ["Frontend", "CSS"], 
+                description: "Stop using media queries for everything. Container queries are here to change how we think about responsive design." 
+            },
+            { 
+                time: "3:20 PM - 3:30 PM", 
+                type: "transition", 
+                title: "Short Break / Transition" 
+            },
+            { 
+                time: "3:30 PM - 4:30 PM", 
+                type: "talk", 
+                title: "Securing the Supply Chain: SBOMs in Action", 
+                speakers: ["Eve Adams", "Marcus Thorne"], 
+                categories: ["Security", "SRE"], 
+                description: "Understanding Software Bill of Materials (SBOM) and how to automate vulnerability scanning in your CI/CD pipeline." 
+            },
+            { 
+                time: "4:30 PM - 4:40 PM", 
+                type: "transition", 
+                title: "Short Break / Transition" 
+            },
+            { 
+                time: "4:40 PM - 5:40 PM", 
+                type: "talk", 
+                title: "State of AI: Local LLMs for Developers", 
+                speakers: ["Frank Wright"], 
+                categories: ["AI", "Python"], 
+                description: "How to run and integrate large language models locally using Ollama and LangChain without relying on external APIs." 
+            }
+        ];
+
+        const scheduleContainer = document.getElementById('schedule');
+        const searchInput = document.getElementById('categorySearch');
+
+        function renderSchedule(filter = '') {
+            scheduleContainer.innerHTML = '';
+            const normalizedFilter = filter.toLowerCase().trim();
+
+            talks.forEach(item => {
+                // If it's a talk, check if it matches the filter
+                let matches = true;
+                if (item.type === 'talk' && normalizedFilter) {
+                    matches = item.categories.some(cat => cat.toLowerCase().includes(normalizedFilter));
+                }
+
+                // Create the element
+                const div = document.createElement('div');
+                div.className = `schedule-item ${item.type} ${matches ? '' : 'hidden'}`;
+
+                let content = `
+                    <span class="time">${item.time}</span>
+                    <div class="title">${item.title}</div>
+                `;
+
+                if (item.type === 'talk') {
+                    content += `
+                        <div class="speakers">By ${item.speakers.join(' & ')}</div>
+                        <div class="categories">
+                            ${item.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('')}
+                        </div>
+                        <div class="description">${item.description}</div>
+                    `;
+                } else if (item.description) {
+                    content += `<div class="description">${item.description}</div>`;
+                }
+
+                div.innerHTML = content;
+                scheduleContainer.appendChild(div);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderSchedule(e.target.value);
+        });
+
+        // Initial render
+        renderSchedule();
+    </script>
+</body>
+</html>
